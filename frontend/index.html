@@ -145,7 +145,7 @@
         </div>
         <div class="row">
             <div class="col-md-2" style="text-align: right">
-                <select name="repeatUnit" ng-model="repeatUnit.selected='daily'" required="required">
+                <select name="repeatUnit" ng-model="repeatUnit.selected" required="required">
                     <option value="daily" selected>Daily</option>
                     <option value="weekly">Weekly</option>
                     <option value="custom">Custom</option>
@@ -167,7 +167,7 @@
                     <option>Every 4th</option>
                 </select>
             </div>
-            <div class="col-md-4" ng-if="repeatUnit.selected=='weekly'">
+            <div class="col-md-2" ng-if="repeatUnit.selected=='weekly'">
                 <input type="checkbox" name="daysOfWeek" value="Sunday">Sunday<br>
                 <input type="checkbox" name="daysOfWeek" value="Monday">Monday<br>
                 <input type="checkbox" name="daysOfWeek" value="Tuesday">Tuesday<br>
@@ -176,12 +176,16 @@
                 <input type="checkbox" name="daysOfWeek" value="Friday">Friday<br>
                 <input type="checkbox" name="daysOfWeek" value="Saturday">Saturday<br>
             </div>
-            <div class="col-md-6" ng-if="repeatUnit.selected=='custom'" ng-controller="DatepickerDemoCtrl">
-                <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+            <div class="col-md-4" ng-if="repeatUnit.selected=='custom'" ng-controller="DatepickerDemoCtrl">
+                <div>
+                    <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+                </div>
                 <div style="display:inline-block">
                     <uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></uib-datepicker>
                 </div>
-                <button name="addSelectedDate">Add Selected Date</button>
+                <div>
+                    <button name="addSelectedDate">Add Selected Date</button>
+                </div>
             </div>
         </div>
         <br/>
