@@ -1,10 +1,4 @@
 angular.module('ui.bootstrap.demo', ['ngAnimate', 'ui.bootstrap', 'ngMessages', 'acdTimepicker']);
-angular.module('ui.bootstrap.demo').controller('mainCtrl', ['$scope', function($scope){
-        $scope.startTimeLabel="Start time";
-        $scope.startTimeModel= "05:30";
-        $scope.endTimeLabel="End time";
-        $scope.endTimeModel="18:30";
-}]);
 
 angular.module('ui.bootstrap.demo').controller('DatepickerPopupDemoCtrl', function ($scope) {
     $scope.today = function() {

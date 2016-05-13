@@ -23,7 +23,7 @@ angular.module('acdTimepicker').controller('timepickerCtrl', ['$scope', '$filter
 
         var d = new Date();
 
-        if(isHHMMvalid()) {
+        if(isHHMMvalid($scope.baseTimeModel)) {
             d.setHours(getInputHH());
             d.setMinutes(getInputMM());
             $scope.baseTime4Picker = d;
@@ -38,20 +38,6 @@ angular.module('acdTimepicker').controller('timepickerCtrl', ['$scope', '$filter
         $scope.baseTimeModel=$filter('date')($scope.baseTime4Picker, 'HH:mm');
     }
 
-    function isHHMMvalid(){
-        /*
-         var result = false;
-         if(!($scope.baseTimeModel ===undefine || $scope.baseTimeModel===null)){
-         if($scope.baseTimeModel.$valid) {
-         result=true;
-         }
-         }
-
-         return result;
-         */
-        return true;
-    }
-
     function getInputHH(){
         return $scope.baseTimeModel.substr(0,2);
     }
@@ -59,6 +45,23 @@ angular.module('acdTimepicker').controller('timepickerCtrl', ['$scope', '$filter
     function getInputMM(){
         return $scope.baseTimeModel.substr(3,2);
     }
+
+    function isHHMMvalid(timeStr) {
+         if(!isUndefinedOrNull(timeStr)){
+             var timeHHMMPattern = "^(0[0-9]|1[0-9]|2[0-3]):(00|15|30|45)$"; 
+             var timeHHMMReg = new RegExp(timeHHMMPattern);
+
+             if(timeHHMMReg.test(timeStr)) {
+                return true;
+             }
+         }
+         return false
+    }
+
+    function isUndefinedOrNull(val) {
+        return angular.isUndefined(val) || val === null;
+    }
+
 }]);
 
 angular.module('acdTimepicker').directive('acdTimepicker', function(){
