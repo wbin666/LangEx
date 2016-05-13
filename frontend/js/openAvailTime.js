@@ -1,12 +1,8 @@
-angular.module('ui.bootstrap.demo', ['ngAnimate', 'ui.bootstrap', 'ngMessages', 'acdTimepicker']);
-angular.module('ui.bootstrap.demo').controller('mainCtrl', ['$scope', function($scope){
-        $scope.startTimeLabel="Start time";
-        $scope.startTimeModel= "05:30";
-        $scope.endTimeLabel="End time";
-        $scope.endTimeModel="18:30";
-}]);
-
-angular.module('ui.bootstrap.demo').controller('DatepickerPopupDemoCtrl', function ($scope) {
+/**
+ * Created by alex on 5/12/16.
+ */
+angular.module('openAvailTime', ['ngAnimate', 'ui.bootstrap', 'ngMessages']);
+angular.module('openAvailTime').controller('DatepickerPopupDemoCtrl', function ($scope) {
     $scope.today = function() {
         $scope.dt = new Date();
         //$scope.dt=null;  //need a placeholder to show the date format if the date is null.
@@ -103,35 +99,35 @@ angular.module('ui.bootstrap.demo').controller('DatepickerPopupDemoCtrl', functi
     }
 });
 
-angular.module('ui.bootstrap.demo').controller('TimepickerDemoCtrl', function ($scope, $log) {
+angular.module('openAvailTime').controller('TimepickerDemoCtrl', function ($scope, $log) {
     //$scope.mytime = new Date().setMinutes(0);
     $scope.mytime=null;
 
     /*
-    $scope.hstep = 1;
-    $scope.mstep = 15;
+     $scope.hstep = 1;
+     $scope.mstep = 15;
 
-    $scope.options = {
-        hstep: [1, 2, 3],
-        mstep: [1, 5, 10, 15, 25, 30]
-    };
+     $scope.options = {
+     hstep: [1, 2, 3],
+     mstep: [1, 5, 10, 15, 25, 30]
+     };
 
-    $scope.ismeridian = true;
-    $scope.toggleMode = function() {
-        $scope.ismeridian = ! $scope.ismeridian;
-    };
+     $scope.ismeridian = true;
+     $scope.toggleMode = function() {
+     $scope.ismeridian = ! $scope.ismeridian;
+     };
 
 
-    $scope.update = function() {
-        var d = new Date();
-        d.setHours( 14 );
-        d.setMinutes( 0 );
-        $scope.mytime = d;
-    };
+     $scope.update = function() {
+     var d = new Date();
+     d.setHours( 14 );
+     d.setMinutes( 0 );
+     $scope.mytime = d;
+     };
 
-    $scope.clear = function() {
-        $scope.mytime = null;
-    };
+     $scope.clear = function() {
+     $scope.mytime = null;
+     };
 
      */
 
@@ -141,11 +137,11 @@ angular.module('ui.bootstrap.demo').controller('TimepickerDemoCtrl', function ($
         $log.log('Time changed to: ' + $scope.mytime);
 
         $scope.mytime=rounded;
-        
+
     };
 });
 
-angular.module('ui.bootstrap.demo').controller('DatepickerDemoCtrl', function ($scope) {
+angular.module('openAvailTime').controller('DatepickerDemoCtrl', function ($scope) {
     $scope.today = function() {
         $scope.dt = new Date();
     };
