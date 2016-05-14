@@ -85,18 +85,16 @@
         <h3>Please open your available time</h3>
     </div>
 
-<!--
-    <acd-timepicker label-Text="::mainCtrl.startTimeLabel" input-Model="mainCtrl.startTimeModel"></acd-timepicker>
--->
-    <label>The label Text and input model in outer scope are : {{startTimeLabel}}</label>
-    <input ng-model="startTimeModel">
+    <form name="mainForm" novalidate>
+        <label>The label Text and input model in outer scope are : {{startTimeLabel}}</label>
+        <input ng-model="startTimeModel">
 
-    <acd-timepicker base-time-model="startTimeModel" base-label-text="{{::startTimeLabel}}"></acd-timepicker>
+        <acd-timepicker base-time-model="startTimeModel" base-label-text="{{::startTimeLabel}}"></acd-timepicker>
 
-    <label>The label Text and input Model in outer scope are : {{endTimeLabel}}</label>
-    <input ng-model="endTimeModel">
-    <acd-timepicker base-time-model="endTimeModel" base-label-text="{{::endTimeLabel}}"></acd-timepicker>
-
+        <label>The label Text and input Model in outer scope are : {{endTimeLabel}}</label>
+        <input ng-model="endTimeModel">
+        <acd-timepicker base-time-model="endTimeModel" base-label-text="{{::endTimeLabel}}"></acd-timepicker>
+    </form>
     <!--End of Alex's testing area  =========================================   -->
 
 
