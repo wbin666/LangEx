@@ -3,13 +3,14 @@
 </div>
 <div class="row">
     <div class="col-md-2" style="text-align: right">
-        <select name="repeatUnit" ng-model="repeatUnit.selected" required="required">
-            <option value="daily" selected>Daily</option>
+        <!--<select name="repeatUnit" ng-model="repeatUnit.selected" required="required">-->
+        <select ng-model="repeatOptionSelected" required="required">
+            <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
             <option value="custom">Custom</option>
         </select>
     </div>
-    <div class="col-md-2" ng-if="repeatUnit.selected==='daily'">
+    <div class="col-md-2" ng-if="repeatOptionSelected==='daily'">
         <select name="dailyRepeatOption" required="required">
             <option>Every day</option>
             <option>Every other day</option>
@@ -17,7 +18,7 @@
             <option>Every 4th day</option>
         </select>
     </div>
-    <div class="col-md-2" ng-if="repeatUnit.selected==='weekly'">
+    <div class="col-md-2" ng-if="repeatOptionSelected==='weekly'">
         <select name="weeklyRepeatOption" required="required">
             <option>Every</option>
             <option>Every other</option>
@@ -25,7 +26,7 @@
             <option>Every 4th</option>
         </select>
     </div>
-    <div class="col-md-2" ng-if="repeatUnit.selected==='weekly'">
+    <div class="col-md-2" ng-if="repeatOptionSelected==='weekly'">
         <input type="checkbox" name="daysOfWeek" value="Sunday">Sunday<br>
         <input type="checkbox" name="daysOfWeek" value="Monday">Monday<br>
         <input type="checkbox" name="daysOfWeek" value="Tuesday">Tuesday<br>
@@ -34,12 +35,12 @@
         <input type="checkbox" name="daysOfWeek" value="Friday">Friday<br>
         <input type="checkbox" name="daysOfWeek" value="Saturday">Saturday<br>
     </div>
-    <div class="col-md-4" ng-if="repeatUnit.selected==='custom'" ng-controller="DatepickerDemoCtrl">
+    <div class="col-md-4" ng-if="repeatOptionSelected==='custom'" ng-controller="datepickerInlineCtrl">
         <div>
-            <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+            <pre>Selected date is: <em>{{dateSelected | date:'fullDate' }}</em></pre>
         </div>
         <div style="display:inline-block">
-            <uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></uib-datepicker>
+            <uib-datepicker ng-model="dateSelected" class="well well-sm" datepicker-options="options"></uib-datepicker>
         </div>
         <div>
             <button name="addSelectedDate">Add Selected Date</button>
