@@ -1,11 +1,19 @@
 /**
  * Created by alex on 5/12/16.
  */
-angular.module('langExApp', ['acdTimepicker']);
+angular.module('langExApp', ['acdTimepicker', 'acdDatepicker']);
 
 angular.module('langExApp').controller('mainCtrl', ['$scope', function($scope){
     $scope.startTimeLabel="Start time";
     $scope.startTimeModel= "05:30";
     $scope.endTimeLabel="End time";
     $scope.endTimeModel="18:30";
+
+    $scope.startDateLabel="Starting";
+    $scope.startDateModel = new Date("2016-06-16");
+    //$scope.startDateModel;
+    //$scope.startDateModel = null;
+
+    $scope.endDateLabel="To";
+    $scope.endDateModel= new Date("2016-08-18");
 }]);

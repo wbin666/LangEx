@@ -17,16 +17,16 @@ angular.module('acdDatepicker').directive('acdDatepicker', function(){
     };
 });
 
-//just for test purpose, mainCtrl is used to feed the test data
-angular.module('acdDatepicker').controller('mainCtrl', ['$scope', function($scope){
-     $scope.startDateLabel="Starting";
-    //$scope.startDateModel = new Date("2016-06-16");
-    //$scope.startDateModel;
-    $scope.startDateModel = null;
-
-    $scope.endDateLabel="To";
-     $scope.endDateModel= new Date("2016-08-18");
-}]);
+// //just for test purpose, mainCtrl is used to feed the test data
+// angular.module('acdDatepicker').controller('mainCtrl', ['$scope', function($scope){
+//      $scope.startDateLabel="Starting";
+//     //$scope.startDateModel = new Date("2016-06-16");
+//     //$scope.startDateModel;
+//     $scope.startDateModel = null;
+//
+//     $scope.endDateLabel="To";
+//      $scope.endDateModel= new Date("2016-08-18");
+// }]);
 
 angular.module('acdDatepicker').controller('datepickerCtrl', function ($scope) {
     var numOfDaysLater= 3;   // hard code as default value if no setting
