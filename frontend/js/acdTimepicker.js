@@ -3,6 +3,31 @@
  */
 angular.module('acdTimepicker', ['ngAnimate', 'ui.bootstrap', 'ngMessages']);
 
+/*
+//just for test purpose, mainCtrl is used to feed the test data
+angular.module('acdTimepicker').controller('mainCtrl', ['$scope', function($scope){
+    $scope.startTimeLabel="Start time";
+    $scope.startTimeModel= "05:30";
+    $scope.endTimeLabel="End time";
+    $scope.endTimeModel="18:30";
+}]);
+*/
+
+
+angular.module('acdTimepicker').directive('acdTimepicker', function(){
+    return {
+        restrict: 'E',
+        scope: {
+            baseTimeModel: '=',
+            baseLabelText: '@'
+        },
+        templateUrl: 'html/acdTimepicker.html',
+        replace: 'true',
+        bindToController: 'true',
+        controller: 'timepickerCtrl as baseTimeCtrl'
+    };
+});
+
 angular.module('acdTimepicker').controller('timepickerCtrl', ['$scope', '$filter', function ($scope, $filter) {
     initTimeCtrl();
 
@@ -64,16 +89,3 @@ angular.module('acdTimepicker').controller('timepickerCtrl', ['$scope', '$filter
 
 }]);
 
-angular.module('acdTimepicker').directive('acdTimepicker', function(){
-    return {
-        restrict: 'E',
-        scope: {
-            baseTimeModel: '=',
-            baseLabelText: '@'
-        },
-        templateUrl: 'html/acdTimepicker.html',
-        replace: 'true',
-        bindToController: 'true',
-        controller: 'timepickerCtrl as baseCtrl'
-    };
-});

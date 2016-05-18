@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="langExApp">
+<html lang="en" ng-app="acdDatepicker">
 <!-- ng-strict-di does not work here since it will cause no response from the html -->
 <head>
     <meta charset="utf-8">
@@ -78,60 +78,22 @@
 </nav>
 
 <!-- Begin page content -->
-<div class="container">
+<div class="container" ng-controller="mainCtrl">
 
     <!--Start of Alex's testing area ==================<div ng-view></div>=========================== -->
     <div class="page-header">
         <h3>Please open your available time</h3>
     </div>
 
-    <form name="openAvailTimeForm" ng-controller="mainCtrl" novalidate>
-        <acd-timepicker base-time-model="startTimeModel" base-label-text="{{::startTimeLabel}}"></acd-timepicker>
-        <acd-timepicker base-time-model="endTimeModel" base-label-text="{{::endTimeLabel}}"></acd-timepicker>
-        <br>
-        <ng-include src="'html/dateRepeatOptions.html'"></ng-include>
+    <form name="mainForm" novalidate>
+        <label>The label Text and input Model in outer scope are : {{startDateLabel}}</label>
+        <input ng-model="startDateModel">
+        <acd-datepicker base-date-model="startDateModel" base-label-text="{{::startDateLabel}}"></acd-datepicker>
+
+        <label>The label Text and input Model in outer scope are : {{endDateLabel}}</label>
+        <input ng-model="endDateModel">
+        <acd-datepicker base-date-model="endDateModel" base-label-text="{{::endDateLabel}}"></acd-datepicker>
     </form>
-    <br/>
-    <form id="submitForm" name="submitForm" novalidate>
-        <div>
-            <div>
-                <label>Numbers of scheduled days: </label>
-            </div>
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">
-                    <dl>
-                        <dt>Coffee</dt>
-                        <dt>Milk</dt>
-                    </dl>
-                </div>
-            </div>
-            <div>
-                <input type="submit" value="Open the available Time">
-            </div>
-        </div>
-    </form>
-
-    <!-- start of debugging section: this section just for debugging and should be removed for production -->
-
-    <div>
-        <br/>
-        <br/>
-        <p class="lead">This is for debugging data validation analysis.</p>
-        <pre>userForm.name.$error = {{ openAvailTime.datePicker.$error | json }}</pre>
-        <pre>userForm.email.$error={{openAvailTime.startTime.$error | json}}</pre>
-        <pre>userForm.email.$error={{openAvailTime.endTime.$error | json}}</pre>
-        <!-- SHOW OFF OUR FORMDATA OBJECT -->
-        <h2>Sample Form Object</h2>
-    <pre>
-        {{ formData }}
-    </pre>
-
-
-    </div>
-    <!-- end of debugging section-->
-
-
     <!--End of Alex's testing area  =========================================   -->
 
 
@@ -145,27 +107,26 @@
 </footer>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- Alex replace it with jquery v2.2.3 since jquery v1.11.3 is just for IE6/7/8 support
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
-    -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Alex replace it with jquery v2.2.3 since jquery v1.11.3 is just for IE6/7/8 support
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
+-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/vendor/ie10-viewport-bug-workaround.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="js/vendor/ie10-viewport-bug-workaround.js"></script>
 
-    <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
 
-    <script src="js/langExApp.js"></script>
-    <script src="js/acdTimepicker.js"></script>
+<script src="js/acdDatepicker.js"></script>
 
 </body>
 </html>
