@@ -17,7 +17,7 @@ angular.module('langExApp').controller('mainCtrl', ['$scope', function($scope){
     $scope.endDateLabel="To";
     $scope.endDateModel= new Date("2016-08-18");
 
-    $scope.repeatOptionSelected = "daily";
+    $scope.repeatFreq = "daily";
 }]);
 
 angular.module('langExApp').controller('datepickerInlineCtrl', ['$scope', function ($scope) {

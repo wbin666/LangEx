@@ -4,38 +4,38 @@
 <div class="row">
     <div class="col-md-2" style="text-align: right">
         <!--<select name="repeatUnit" ng-model="repeatUnit.selected" required="required">-->
-        <select ng-model="repeatOptionSelected" required="required">
+        <select ng-model="repeatFreq" required="required">
             <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
             <option value="custom">Custom</option>
         </select>
     </div>
-    <div class="col-md-2" ng-if="repeatOptionSelected==='daily'">
-        <select name="dailyRepeatOption" required="required">
-            <option>Every day</option>
-            <option>Every other day</option>
-            <option>Every 3rd day</option>
-            <option>Every 4th day</option>
+    <div class="col-md-2" ng-if="repeatFreq==='daily'">
+        <select name="dailyRepeatInterval" required="required">
+            <option value="1">Every day</option>
+            <option value="2">Every other day</option>
+            <option value="3">Every 3rd day</option>
+            <option value="4">Every 4th day</option>
         </select>
     </div>
-    <div class="col-md-2" ng-if="repeatOptionSelected==='weekly'">
-        <select name="weeklyRepeatOption" required="required">
-            <option>Every</option>
-            <option>Every other</option>
-            <option>Every 3rd</option>
-            <option>Every 4th</option>
+    <div class="col-md-2" ng-if="repeatFreq==='weekly'">
+        <select name="weeklyRepeatInterval" required="required">
+            <option value="1">Every</option>
+            <option value="2">Every other</option>
+            <option value="3">Every 3rd</option>
+            <option value="4">Every 4th</option>
         </select>
     </div>
-    <div class="col-md-2" ng-if="repeatOptionSelected==='weekly'">
-        <input type="checkbox" name="daysOfWeek" value="Sunday">Sunday<br>
-        <input type="checkbox" name="daysOfWeek" value="Monday">Monday<br>
-        <input type="checkbox" name="daysOfWeek" value="Tuesday">Tuesday<br>
-        <input type="checkbox" name="daysOfWeek" value="Wednesday">Wednesday<br>
-        <input type="checkbox" name="daysOfWeek" value="Thursday">Thursday<br>
-        <input type="checkbox" name="daysOfWeek" value="Friday">Friday<br>
-        <input type="checkbox" name="daysOfWeek" value="Saturday">Saturday<br>
+    <div class="col-md-2" ng-if="repeatFreq==='weekly'">
+        <input type="checkbox" name="repeatByDay" value="1">Sunday<br>
+        <input type="checkbox" name="repeatByDay" value="2" checked>Monday<br>
+        <input type="checkbox" name="repeatByDay" value="4">Tuesday<br>
+        <input type="checkbox" name="repeatByDay" value="8">Wednesday<br>
+        <input type="checkbox" name="repeatByDay" value="16">Thursday<br>
+        <input type="checkbox" name="repeatByDay" value="32">Friday<br>
+        <input type="checkbox" name="repeatByDay" value="64">Saturday<br>
     </div>
-    <div class="col-md-4" ng-if="repeatOptionSelected==='custom'" ng-controller="datepickerInlineCtrl">
+    <div class="col-md-4" ng-if="repeatFreq==='custom'" ng-controller="datepickerInlineCtrl">
         <div>
             <pre>Selected date is: <em>{{dateSelected | date:'fullDate' }}</em></pre>
         </div>
@@ -48,7 +48,7 @@
     </div>
 </div>
 <br/>
-<div ng-if="!(repeatUnit.selected==='custom')">
+<div ng-if="!(repeatOptionSelected==='custom')">
     <div >
         <label>How long the available time repeats</label>
     </div>
