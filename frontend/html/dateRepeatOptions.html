@@ -7,7 +7,7 @@
         <select ng-model="repeatFreq" required="required">
             <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
-            <option value="custom">Custom</option>
+         <!--   <option value="custom">Custom</option> -->
         </select>
     </div>
     <div class="col-md-2" ng-if="repeatFreq==='daily'">
@@ -35,6 +35,7 @@
         <input type="checkbox" name="repeatByDay" value="32">Friday<br>
         <input type="checkbox" name="repeatByDay" value="64">Saturday<br>
     </div>
+    <!--
     <div class="col-md-4" ng-if="repeatFreq==='custom'" ng-controller="datepickerInlineCtrl">
         <div>
             <pre>Selected date is: <em>{{dateSelected | date:'fullDate' }}</em></pre>
@@ -46,9 +47,10 @@
             <button name="addSelectedDate">Add Selected Date</button>
         </div>
     </div>
+    -->
 </div>
 <br/>
-<div ng-if="!(repeatOptionSelected==='custom')">
+<div ng-if="(repeatFreq==='daily' || repeatFreq==='weekly')">
     <div >
         <label>How long the available time repeats</label>
     </div>
