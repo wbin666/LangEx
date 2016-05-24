@@ -85,7 +85,7 @@
         <h3>Please open your available time</h3>
     </div>
 
-    <form name="openAvailTimeForm" ng-controller="mainCtrl" novalidate>
+    <form name="openAvailTimeForm" ng-controller="mainCtrl" action="/availtime" method="post" novalidate>
         <acd-timepicker base-time-model="startTimeModel" base-label-text="{{::startTimeLabel}}"></acd-timepicker>
         <acd-timepicker base-time-model="endTimeModel" base-label-text="{{::endTimeLabel}}"></acd-timepicker>
         <br/>
