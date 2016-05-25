@@ -1,0 +1,55 @@
+<div class="page-header">
+    <h3>Please open your available time</h3>
+</div>
+
+<form name="openAvailTimeForm" ng-app="openAvailTime" ng-controller="mainCtrl" action="/availtime" method="post" novalidate>
+    <acd-timepicker base-time-model="startTimeModel" base-label-text="{{::startTimeLabel}}"></acd-timepicker>
+    <acd-timepicker base-time-model="endTimeModel" base-label-text="{{::endTimeLabel}}"></acd-timepicker>
+    <br/>
+    <ng-include src="'html/dateRepeatOptions.html'"></ng-include>
+
+    <!--
+    <br/>
+    <div>
+        <div>
+            <label>Numbers of scheduled days: </label>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <dl>
+                    <dt>Coffee</dt>
+                    <dt>Milk</dt>
+                </dl>
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="Open the available Time">
+        </div>
+    </div>
+    -->
+
+    <br/>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+<!-- start of debugging section: this section just for debugging and should be removed for production -->
+
+<div>
+    <br/>
+    <br/>
+    <p class="lead">This is for debugging data validation analysis.</p>
+    <pre>userForm.name.$error = {{ openAvailTime.datePicker.$error | json }}</pre>
+    <pre>userForm.email.$error={{openAvailTime.startTime.$error | json}}</pre>
+    <pre>userForm.email.$error={{openAvailTime.endTime.$error | json}}</pre>
+    <!-- SHOW OFF OUR FORMDATA OBJECT -->
+    <h2>Sample Form Object</h2>
+    <pre>
+        {{ formData }}
+    </pre>
+
+
+</div>
+<!-- end of debugging section-->

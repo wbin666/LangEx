@@ -3,6 +3,7 @@
  */
 angular.module('langExApp', ['acdTimepicker', 'acdDatepicker']);
 
+/*
 angular.module('langExApp').controller('mainCtrl', ['$scope', function($scope){
     $scope.startTimeLabel="Start time";
     $scope.startTimeModel= "05:30";
@@ -40,3 +41,4 @@ angular.module('langExApp').controller('datepickerInlineCtrl', ['$scope', functi
     //     return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
     // }
 }]);
+*/

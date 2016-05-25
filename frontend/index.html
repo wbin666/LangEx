@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="langExApp">
+<html lang="en">
 <!-- ng-strict-di does not work here since it will cause no response from the html -->
 <head>
     <meta charset="utf-8">
@@ -85,7 +85,7 @@
         <h3>Please open your available time</h3>
     </div>
 
-    <form name="openAvailTimeForm" ng-controller="mainCtrl" action="/availtime" method="post" novalidate>
+    <form name="openAvailTimeForm" ng-app="openAvailTime" ng-controller="mainCtrl" action="/availtime" method="post" novalidate>
         <acd-timepicker base-time-model="startTimeModel" base-label-text="{{::startTimeLabel}}"></acd-timepicker>
         <acd-timepicker base-time-model="endTimeModel" base-label-text="{{::endTimeLabel}}"></acd-timepicker>
         <br/>
@@ -170,7 +170,7 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
 
-    <script src="js/langExApp.js"></script>
+    <script src="js/openAvailTime.js"></script>
     <script src="js/acdTimepicker.js"></script>
     <script src="js/acdDatepicker.js"></script>
 </body>
