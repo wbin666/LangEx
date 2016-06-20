@@ -85,11 +85,75 @@
         <h3>Please open your available time</h3>
     </div>
 
-    <form name="openAvailTimeForm" ng-app="openAvailTime" ng-controller="mainCtrl" action="/availtime" method="post" novalidate>
+    <form name="openAvailTimeForm" ng-app="openAvailTime" ng-controller="mainCtrl" novalidate>
         <acd-timepicker base-time-model="startTimeModel" base-label-text="{{::startTimeLabel}}"></acd-timepicker>
         <acd-timepicker base-time-model="endTimeModel" base-label-text="{{::endTimeLabel}}"></acd-timepicker>
         <br/>
-        <ng-include src="'html/dateRepeatOptions.html'"></ng-include>
+
+        <div>
+            <label>When the available time repeats</label>
+        </div>
+        <div class="row">
+            <div class="col-md-2" style="text-align: right">
+                <!--<select name="repeatUnit" ng-model="repeatUnit.selected" required="required">-->
+                <select ng-model="repeatFreq" required="required">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <!--   <option value="custom">Custom</option> -->
+                </select>
+            </div>
+            <div class="col-md-2" ng-show="repeatFreq==='daily'">
+                <select ng-model="dailyRepeatInterval" required="required">
+                    <option value="1">Every day</option>
+                    <option value="2">Every other day</option>
+                    <option value="3">Every 3rd day</option>
+                    <option value="4">Every 4th day</option>
+                </select>
+            </div>
+            <div class="col-md-2" ng-if="repeatFreq==='weekly'">
+                <select ng-model="$parent.weeklyRepeatInterval" required="required">
+                    <option value="1">Every</option>
+                    <option value="2">Every other</option>
+                    <option value="3">Every 3rd</option>
+                    <option value="4">Every 4th</option>
+                </select>
+            </div>
+            <div class="col-md-2" ng-if="repeatFreq==='weekly'">
+                <div ng-repeat="day in days">
+                    <label><input type="checkbox" ng-model="day.selected"/>{{day.name}}</label>
+                </div>
+                <!--
+                <input type="checkbox" name="repeatByDay" value="1">Sunday<br>
+                <input type="checkbox" name="repeatByDay" value="2" checked>Monday<br>
+                <input type="checkbox" name="repeatByDay" value="4">Tuesday<br>
+                <input type="checkbox" name="repeatByDay" value="8">Wednesday<br>
+                <input type="checkbox" name="repeatByDay" value="16">Thursday<br>
+                <input type="checkbox" name="repeatByDay" value="32">Friday<br>
+                <input type="checkbox" name="repeatByDay" value="64">Saturday<br>
+                -->
+            </div>
+            <!--
+            <div class="col-md-4" ng-if="repeatFreq==='custom'" ng-controller="datepickerInlineCtrl">
+                <div>
+                    <pre>Selected date is: <em>{{dateSelected | date:'fullDate' }}</em></pre>
+                </div>
+                <div style="display:inline-block">
+                    <uib-datepicker ng-model="dateSelected" class="well well-sm" datepicker-options="options"></uib-datepicker>
+                </div>
+                <div>
+                    <button name="addSelectedDate">Add Selected Date</button>
+                </div>
+            </div>
+            -->
+        </div>
+        <br/>
+        <div>
+            <div>
+                <label>How long the available time repeats</label>
+            </div>
+            <acd-datepicker base-date-model="startDateModel" base-label-text="{{::startDateLabel}}"></acd-datepicker>
+            <acd-datepicker base-date-model="endDateModel" base-label-text="{{::endDateLabel}}"></acd-datepicker>
+        </div>
 
         <!--
         <br/>
@@ -114,7 +178,7 @@
 
         <br/>
         <div>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" ng-click="openTime()">
         </div>
     </form>
 

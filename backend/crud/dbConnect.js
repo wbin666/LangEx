@@ -7,8 +7,8 @@ var MongoClient = require('mongodb').MongoClient;
 
 module.exports.mongoDBinit = function(callback){
     MongoClient.connect('mongodb://127.0.0.1:27017/timeExchange', function (err, db) {
-        module.exports.timeExchangeDB = db;
-        
+        module.exports.langExDB = db;
+
         callback(err);
     });
 };

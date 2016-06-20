@@ -9,10 +9,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.1",
+    "bunyan": "^1.8.1",
     "express": "^4.13.4",
-    "mongodb": "^2.1.16"
+    "mongodb": "^2.1.16",
+    "morgan": "^1.7.0"
   },
   "devDependencies": {
+    "debug": "^2.2.0",
+    "errorhandler": "^1.4.3",
     "jasmine-node": "^1.14.5"
   }
 }

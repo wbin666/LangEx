@@ -4,14 +4,14 @@
 <div class="row">
     <div class="col-md-2" style="text-align: right">
         <!--<select name="repeatUnit" ng-model="repeatUnit.selected" required="required">-->
-        <select ng-model="repeatFreq" required="required">
+        <select ng-model="repeatFreq" ng-init="repeatFreq='daily'" required="required">
             <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
          <!--   <option value="custom">Custom</option> -->
         </select>
     </div>
     <div class="col-md-2" ng-if="repeatFreq==='daily'">
-        <select name="dailyRepeatInterval" required="required">
+        <select ng-model="dailyRepeatInterval" ng-init="dailyRepeatInterval='1'" required="required">
             <option value="1">Every day</option>
             <option value="2">Every other day</option>
             <option value="3">Every 3rd day</option>
@@ -19,7 +19,7 @@
         </select>
     </div>
     <div class="col-md-2" ng-if="repeatFreq==='weekly'">
-        <select name="weeklyRepeatInterval" required="required">
+        <select ng-model="weeklyRepeatInterval" ng-init="weeklyRepeatOptions='1'" required="required">
             <option value="1">Every</option>
             <option value="2">Every other</option>
             <option value="3">Every 3rd</option>
@@ -27,6 +27,10 @@
         </select>
     </div>
     <div class="col-md-2" ng-if="repeatFreq==='weekly'">
+        <div ng-repeat="day in days">
+            <label><input type="checkbox" ng-model="day.selected"/>{{day.name}}</label>
+        </div>
+        <!--
         <input type="checkbox" name="repeatByDay" value="1">Sunday<br>
         <input type="checkbox" name="repeatByDay" value="2" checked>Monday<br>
         <input type="checkbox" name="repeatByDay" value="4">Tuesday<br>
@@ -34,6 +38,7 @@
         <input type="checkbox" name="repeatByDay" value="16">Thursday<br>
         <input type="checkbox" name="repeatByDay" value="32">Friday<br>
         <input type="checkbox" name="repeatByDay" value="64">Saturday<br>
+        -->
     </div>
     <!--
     <div class="col-md-4" ng-if="repeatFreq==='custom'" ng-controller="datepickerInlineCtrl">
