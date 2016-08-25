@@ -2,19 +2,19 @@
     <div class="row" ng-class="{ 'has-error': baseTimeForm.baseTimeInput.$touched && baseTimeForm.baseTimeInput.$invalid }">
         <p>
         <div class="col-md-2" style="text-align: right">
-            <label>{{::baseLabelText}}</label>
+            <label>{{::(baseTimeCtrl.baseLabelText)}}</label>
         </div>
         <div class="col-md-2">
                     <span class="input-group">
                         <input name="baseTimeInput" type="text" class="form-control" placeholder="HH:MM"
-                               ng-model="baseTimeModel"
+                               ng-model="baseTimeCtrl.baseTimeModel"
                                pattern="(0[0-9]|1[0-9]|2[0-3])(:(00|15|30|45))"
                                maxlength="5"
                                required="required">
                         <span class="input-group-btn" uib-dropdown auto-close="outsideClick">
-                            <button type="button" ng-click="baseTimeForm.baseTimeInput.$valid && (baseTimeForm.baseTimeInput.$dirty || baseTimeForm.baseTimeInput.$pristine) && updateTimepicker()" class="btn btn-default dropdown-toggle" uib-dropdown-toggle><i class="glyphicon glyphicon-time"></i></button>
+                            <button type="button" ng-click="baseTimeForm.baseTimeInput.$valid && (baseTimeForm.baseTimeInput.$dirty || baseTimeForm.baseTimeInput.$pristine) && baseTimeCtrl.updateTimepicker()" class="btn btn-default dropdown-toggle" uib-dropdown-toggle><i class="glyphicon glyphicon-time"></i></button>
                             <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
-                                <li><uib-timepicker ng-model="baseTime4Picker" ng-change="changed()" hour-step="1" minute-step="15" show-meridian="false"></uib-timepicker>
+                                <li><uib-timepicker ng-model="baseTimeCtrl.baseTime4Picker" ng-change="baseTimeCtrl.changed()" hour-step="1" minute-step="15" show-meridian="false"></uib-timepicker>
                             </ul>
                         </span>
                     </span>
@@ -25,3 +25,4 @@
         </p>
     </div>
 </ng-form>
+

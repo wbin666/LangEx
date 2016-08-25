@@ -2,6 +2,7 @@
 <html lang="en">
 <!-- ng-strict-di does not work here since it will cause no response from the html -->
 <head>
+    <base href="/">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,10 +17,13 @@
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="css/vendor/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="../lib/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    <link href="./sticky-footer-navbar.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
+    <link href="./langExStyle.css" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,8 +52,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Center <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">My Home</a></li>
-                        <li><a href="#">Open Times</a></li>
+                        <li><a href="myCalendar">My Home</a></li>
+                        <li><a href="publishAvailTime">Open Times</a></li>
                         <li><a href="#">Book Exercises</a></li>
                         <li><a href="#">My Exercise History</a></li>
                         <li role="separator" class="divider"></li>
@@ -73,140 +77,38 @@
                 </li>
                 <li><a href="#about">About</a></li>
             </ul>
+            <ul class="navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">login/out <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="test">Log In</a></li>
+                        <li><a href="register">Register</a></li>
+                        <li><a href="logout">Log Out</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
 <!-- Begin page content -->
-<div class="container">
+<div class="container" ng-app="langExApp" ng-controller="LangExController">
 
     <!--Start of Alex's testing area ==================<div ng-view></div>=========================== -->
-    <div class="page-header">
-        <h3>Please open your available time</h3>
-    </div>
-
-    <form name="openAvailTimeForm" ng-app="openAvailTime" ng-controller="mainCtrl" novalidate>
-        <acd-timepicker base-time-model="startTimeModel" base-label-text="{{::startTimeLabel}}"></acd-timepicker>
-        <acd-timepicker base-time-model="endTimeModel" base-label-text="{{::endTimeLabel}}"></acd-timepicker>
-        <br/>
-
-        <div>
-            <label>When the available time repeats</label>
-        </div>
-        <div class="row">
-            <div class="col-md-2" style="text-align: right">
-                <!--<select name="repeatUnit" ng-model="repeatUnit.selected" required="required">-->
-                <select ng-model="repeatFreq" required="required">
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <!--   <option value="custom">Custom</option> -->
-                </select>
-            </div>
-            <div class="col-md-2" ng-show="repeatFreq==='daily'">
-                <select ng-model="dailyRepeatInterval" required="required">
-                    <option value="1">Every day</option>
-                    <option value="2">Every other day</option>
-                    <option value="3">Every 3rd day</option>
-                    <option value="4">Every 4th day</option>
-                </select>
-            </div>
-            <div class="col-md-2" ng-if="repeatFreq==='weekly'">
-                <select ng-model="$parent.weeklyRepeatInterval" required="required">
-                    <option value="1">Every</option>
-                    <option value="2">Every other</option>
-                    <option value="3">Every 3rd</option>
-                    <option value="4">Every 4th</option>
-                </select>
-            </div>
-            <div class="col-md-2" ng-if="repeatFreq==='weekly'">
-                <div ng-repeat="day in days">
-                    <label><input type="checkbox" ng-model="day.selected"/>{{day.name}}</label>
-                </div>
-                <!--
-                <input type="checkbox" name="repeatByDay" value="1">Sunday<br>
-                <input type="checkbox" name="repeatByDay" value="2" checked>Monday<br>
-                <input type="checkbox" name="repeatByDay" value="4">Tuesday<br>
-                <input type="checkbox" name="repeatByDay" value="8">Wednesday<br>
-                <input type="checkbox" name="repeatByDay" value="16">Thursday<br>
-                <input type="checkbox" name="repeatByDay" value="32">Friday<br>
-                <input type="checkbox" name="repeatByDay" value="64">Saturday<br>
-                -->
-            </div>
-            <!--
-            <div class="col-md-4" ng-if="repeatFreq==='custom'" ng-controller="datepickerInlineCtrl">
-                <div>
-                    <pre>Selected date is: <em>{{dateSelected | date:'fullDate' }}</em></pre>
-                </div>
-                <div style="display:inline-block">
-                    <uib-datepicker ng-model="dateSelected" class="well well-sm" datepicker-options="options"></uib-datepicker>
-                </div>
-                <div>
-                    <button name="addSelectedDate">Add Selected Date</button>
-                </div>
-            </div>
-            -->
-        </div>
-        <br/>
-        <div>
-            <div>
-                <label>How long the available time repeats</label>
-            </div>
-            <acd-datepicker base-date-model="startDateModel" base-label-text="{{::startDateLabel}}"></acd-datepicker>
-            <acd-datepicker base-date-model="endDateModel" base-label-text="{{::endDateLabel}}"></acd-datepicker>
-        </div>
-
-        <!--
-        <br/>
-        <div>
-            <div>
-                <label>Numbers of scheduled days: </label>
-            </div>
-            <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-3">
-                    <dl>
-                        <dt>Coffee</dt>
-                        <dt>Milk</dt>
-                    </dl>
-                </div>
-            </div>
-            <div>
-                <input type="submit" value="Open the available Time">
-            </div>
-        </div>
-        -->
-
-        <br/>
-        <div>
-            <input type="submit" value="Submit" ng-click="openTime()">
-        </div>
-    </form>
+    <div ng-view> </div>
 
     <!-- start of debugging section: this section just for debugging and should be removed for production -->
-
-    <div>
-        <br/>
-        <br/>
-        <p class="lead">This is for debugging data validation analysis.</p>
-        <pre>userForm.name.$error = {{ openAvailTime.datePicker.$error | json }}</pre>
-        <pre>userForm.email.$error={{openAvailTime.startTime.$error | json}}</pre>
-        <pre>userForm.email.$error={{openAvailTime.endTime.$error | json}}</pre>
-        <!-- SHOW OFF OUR FORMDATA OBJECT -->
-        <h2>Sample Form Object</h2>
-    <pre>
-        {{ formData }}
-    </pre>
-
-
-    </div>
+    <hr />
+    <pre>$location.path() = {{$location.path()}}</pre>
+    <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+    <pre>$route.current.params = {{$route.current.params}}</pre>
+    <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+    <pre>$routeParams = {{$routeParams}}</pre>
     <!-- end of debugging section-->
-
 
     <!--End of Alex's testing area  =========================================   -->
 
-
 </div>
-
 
 <footer class="footer">
     <div class="container">
@@ -226,16 +128,28 @@
 
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="js/vendor/ie10-viewport-bug-workaround.js"></script>
+    <script src="../lib/ie10-viewport-bug-workaround.js"></script>
 
+<!-- jquery, moment, and angular have to get included before fullcalendar -->
+    <script src="bower_components/moment/min/moment.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script src="bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="bower_components/angular-messages/angular-messages.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="bower_components/fullcalendar/dist/gcal.js"></script>
 
-    <script src="js/openAvailTime.js"></script>
-    <script src="js/acdTimepicker.js"></script>
-    <script src="js/acdDatepicker.js"></script>
+    <script src="./langExApp.module.js"></script>
+    <script src="timemanagerclient/timeManager.module.js"></script>
+    <script src="timemanagerclient/timeManager.routes.js"></script>
+    <script src="timemanagerclient/OpenAvailTimeCtrl.js"></script>
+    <script src="timemanagerclient/openAvailTime.factory.js"></script>
+    <script src="timemanagerclient/acdTimepicker.directive.js"></script>
+    <script src="timemanagerclient/acdDatepicker.directive.js"></script>
+    <script src="timemanagerclient/CalendarCtrl.js"></script>
+    <script src="js/test.module.js"></script>
+    <script src="js/test.routes.js"></script>
 </body>
 </html>
